@@ -35,6 +35,7 @@ class DemoApp < Sinatra::Application
   get '/ehlo', provides: 'json' do
     if (sha = request.cookies['ip_foo']) && sha.eql?(sha512_for_ip(request.ip))
       uri = URI('http://services.packetizer.com/motd/?f=json')
+      @message = 'Sure, have a message.'
       @data = JSON.parse(Net::HTTP.get(uri))
     else
       @message = 'No cookie.  No message.'
