@@ -23,7 +23,7 @@ set :public_folder, Proc.new { File.join(root, 'public') }
 set :views, Proc.new { File.join(root, 'views') }
 
 class DemoApp < Sinatra::Application
-  get '/helo' do #, provides: 'json' do
+  get '/helo', provides: 'json' do
     response.set_cookie('ip_foo',
                         value: sha512_for_ip(request.ip),
                         expires: Time.now + 1.year)
@@ -32,7 +32,7 @@ class DemoApp < Sinatra::Application
     jbuilder :api_response
   end
 
-  get '/ehlo' do #, provides: 'json' do
+  get '/ehlo', provides: 'json' do
     if (sha = request.cookies['ip_foo']) && sha.eql?(sha512_for_ip(request.ip))
       uri = URI('http://services.packetizer.com/motd/?f=json')
       @data = JSON.parse(Net::HTTP.get(uri))
