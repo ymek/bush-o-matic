@@ -38,6 +38,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  foreman
-  sinatra
-  tilt-jbuilder
+  foreman (= 0.63.0)
+  sinatra (= 1.4.3)
+  tilt-jbuilder (= 0.5.2)
